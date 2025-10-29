@@ -1,4 +1,60 @@
-# Welcome to your Lovable project
+# AI-Based Smart Truck Monitoring System
+
+## Project Overview
+
+A professional, industrial-grade monitoring dashboard for Tata Prima trucks featuring:
+
+- **Realistic 3D Visualization**: Interactive Tata Prima truck model with detailed cabin, cargo section, and realistic components
+- **Real-Time Monitoring**: Live tracking of speed, load, temperature, tire pressures, and fuel levels
+- **ML Tire Life Prediction**: AI-powered predictive analytics for tire health and maintenance
+- **Active Alerts System**: Intelligent alert management with critical, warning, and info classifications
+- **AI Assistant**: Smart suggestions and recommendations based on current vehicle conditions
+- **Weather Simulation**: Rain effects with automatic tarpaulin deployment
+- **Real-Time Trends**: Dynamic charts tracking tire pressure and fuel consumption
+
+## Technologies Used
+
+- React 18 with TypeScript
+- Three.js & React Three Fiber for 3D visualization
+- Recharts for data visualization
+- Tailwind CSS with custom industrial design system
+- shadcn/ui components
+- Vite for blazing-fast development
+
+## Features
+
+### Control Panel
+- Engine on/off toggle with visual feedback
+- Rain simulation with tarpaulin animation
+- Individual tire pressure controls (4 tires)
+- Speed, load, and temperature adjustments
+- Real-time RPM indicator
+
+### 3D Truck Model
+- Detailed Tata Prima cabin with curved edges
+- Chrome grille with brand badge
+- Realistic headlights with glow effects
+- Side mirrors with turn signals
+- Cargo section with deployable tarpaulin
+- Interactive camera controls (rotate, zoom, pan)
+
+### Analytics & Predictions
+- ML-based tire life prediction
+- Impact factor analysis (pressure, load, speed, temperature)
+- AI-powered recommendations
+- Estimated remaining tire life in kilometers
+
+### Monitoring Widgets
+- 6 real-time status indicators
+- Color-coded health indicators
+- Progress bars for quick status assessment
+- Responsive grid layout
+
+### Smart Alerts
+- Critical, warning, and info level alerts
+- Real-time alert generation based on parameters
+- Alert summary dashboard
+- Animated alert notifications
 
 ## Project info
 
