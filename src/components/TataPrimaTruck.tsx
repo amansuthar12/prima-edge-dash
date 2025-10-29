@@ -24,9 +24,17 @@ function TruckModel({ engineOn, rainActive, speed }: TataPrimaTruckProps) {
       });
     }
 
-    // Animate tarpaulin when rain is active
-    if (tarpaulinRef.current && rainActive) {
-      tarpaulinRef.current.position.y = Math.sin(state.clock.elapsedTime * 2) * 0.05 - 0.5;
+    // Smooth tarpaulin deployment animation
+    if (tarpaulinRef.current) {
+      const targetY = rainActive ? 1.4 : 2.5; // Deploy down to 1.4, retract up to 2.5
+      const currentY = tarpaulinRef.current.position.y;
+      const lerpSpeed = 0.05;
+      tarpaulinRef.current.position.y += (targetY - currentY) * lerpSpeed;
+      
+      // Add gentle wave effect when deployed
+      if (rainActive && Math.abs(currentY - 1.4) < 0.1) {
+        tarpaulinRef.current.position.y += Math.sin(state.clock.elapsedTime * 2) * 0.02;
+      }
     }
   });
 
@@ -294,18 +302,17 @@ function TruckModel({ engineOn, rainActive, speed }: TataPrimaTruckProps) {
         <meshStandardMaterial color="#E8EEF2" metalness={0.6} />
       </mesh>
 
-      {/* Tarpaulin cover */}
+      {/* Tarpaulin cover - Always visible but starts retracted */}
       <mesh 
         ref={tarpaulinRef} 
-        position={[0, 1.4, 0]}
-        visible={rainActive}
+        position={[0, 2.5, 0]}
       >
         <boxGeometry args={[2.2, 0.05, 4]} />
         <meshStandardMaterial 
           color="#2a5a7a" 
           side={THREE.DoubleSide}
           transparent
-          opacity={0.8}
+          opacity={0.85}
         />
       </mesh>
 

@@ -6,6 +6,7 @@ import { MLPrediction } from '@/components/MLPrediction';
 import { TrendsChart } from '@/components/TrendsChart';
 import { AlertsPanel } from '@/components/AlertsPanel';
 import { AIAssistant } from '@/components/AIAssistant';
+import { FuelMonitoring } from '@/components/FuelMonitoring';
 
 const Index = () => {
   // State management
@@ -27,20 +28,19 @@ const Index = () => {
     }
   }, [engineOn, speed]);
 
-  // Simulate temperature changes
+  // Simulate temperature changes based on load and speed
   useEffect(() => {
-    if (engineOn) {
-      const interval = setInterval(() => {
-        setTemperature((prev) => {
-          const targetTemp = 75 + (speed / 2) + (load * 0.5);
-          if (prev < targetTemp) return Math.min(targetTemp, prev + 0.5);
-          if (prev > targetTemp) return Math.max(targetTemp, prev - 0.5);
-          return prev;
-        });
-      }, 1000);
-      return () => clearInterval(interval);
-    }
-  }, [engineOn, speed, load]);
+    const interval = setInterval(() => {
+      setTemperature((prev) => {
+        // Base temp + load impact + speed impact
+        const targetTemp = 60 + (load * 1.2) + (speed / 3);
+        if (prev < targetTemp) return Math.min(targetTemp, prev + 0.5);
+        if (prev > targetTemp) return Math.max(targetTemp, prev - 0.5);
+        return prev;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [speed, load]);
 
   const avgTirePressure = Math.round(tirePressures.reduce((a, b) => a + b, 0) / tirePressures.length);
 
@@ -120,6 +120,15 @@ const Index = () => {
               speed={speed}
               engineOn={engineOn}
             />
+
+            {/* Fuel Monitoring Button */}
+            <div className="glass-panel p-6 animate-slide-up">
+              <FuelMonitoring
+                fuelLevel={fuelLevel}
+                speed={speed}
+                engineOn={engineOn}
+              />
+            </div>
           </div>
 
           {/* Right Column - Analytics & Alerts */}
