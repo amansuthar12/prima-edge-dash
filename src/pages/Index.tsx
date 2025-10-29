@@ -70,12 +70,14 @@ const Index = () => {
               setEngineOn={setEngineOn}
               rainActive={rainActive}
               setRainActive={setRainActive}
-              speed={speed}
-              setSpeed={setSpeed}
-              load={load}
-              setLoad={setLoad}
-              temperature={temperature}
-              setTemperature={setTemperature}
+        speed={speed}
+        setSpeed={setSpeed}
+        load={load}
+        setLoad={setLoad}
+        fuelLevel={fuelLevel}
+        setFuelLevel={setFuelLevel}
+        temperature={temperature}
+        setTemperature={setTemperature}
               tirePressures={tirePressures}
               setTirePressures={setTirePressures}
             />

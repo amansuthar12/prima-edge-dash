@@ -1,7 +1,7 @@
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
-import { Power, CloudRain, Gauge, Weight, Thermometer } from 'lucide-react';
+import { Power, CloudRain, Gauge, Weight, Thermometer, Fuel } from 'lucide-react';
 
 interface ControlPanelProps {
   engineOn: boolean;
@@ -12,6 +12,8 @@ interface ControlPanelProps {
   setSpeed: (value: number) => void;
   load: number;
   setLoad: (value: number) => void;
+  fuelLevel: number;
+  setFuelLevel: (value: number) => void;
   temperature: number;
   setTemperature: (value: number) => void;
   tirePressures: number[];
@@ -27,6 +29,8 @@ export function ControlPanel({
   setSpeed,
   load,
   setLoad,
+  fuelLevel,
+  setFuelLevel,
   temperature,
   setTemperature,
   tirePressures,
@@ -103,6 +107,28 @@ export function ControlPanel({
           onValueChange={(value) => setLoad(value[0])}
           max={30}
           step={1}
+          className="w-full"
+        />
+      </div>
+
+      {/* Fuel Level Control */}
+      <div className="space-y-3">
+        <div className="flex items-center justify-between">
+          <Label className="flex items-center gap-2 text-foreground">
+            <Fuel className="h-4 w-4" />
+            Fuel Level
+          </Label>
+          <span className={`font-mono font-bold ${
+            fuelLevel < 20 ? 'status-critical' : fuelLevel < 40 ? 'status-warning' : 'status-good'
+          }`}>
+            {fuelLevel} L
+          </span>
+        </div>
+        <Slider
+          value={[fuelLevel]}
+          onValueChange={(value) => setFuelLevel(value[0])}
+          max={300}
+          step={5}
           className="w-full"
         />
       </div>

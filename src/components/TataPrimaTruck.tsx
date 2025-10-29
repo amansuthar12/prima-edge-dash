@@ -42,19 +42,28 @@ function TruckModel({ engineOn, rainActive, speed }: TataPrimaTruckProps) {
   const CabinBody = () => (
     <group>
       {/* Main cabin body */}
-      <mesh position={[0, 1.2, 0]}>
+      <mesh position={[0, 1.2, 0]} castShadow receiveShadow>
         <boxGeometry args={[2.2, 2, 3]} />
-        <meshStandardMaterial 
+        <meshPhysicalMaterial 
           color="#E8EEF2" 
-          metalness={0.8}
-          roughness={0.2}
+          metalness={0.85}
+          roughness={0.15}
+          clearcoat={1}
+          clearcoatRoughness={0.1}
+          reflectivity={0.9}
         />
       </mesh>
 
       {/* Cabin roof */}
-      <mesh position={[0, 2.4, -0.2]} rotation={[-0.1, 0, 0]}>
+      <mesh position={[0, 2.4, -0.2]} rotation={[-0.1, 0, 0]} castShadow receiveShadow>
         <boxGeometry args={[2.2, 0.3, 2.6]} />
-        <meshStandardMaterial color="#E8EEF2" metalness={0.8} roughness={0.2} />
+        <meshPhysicalMaterial 
+          color="#E8EEF2" 
+          metalness={0.85} 
+          roughness={0.15}
+          clearcoat={1}
+          clearcoatRoughness={0.1}
+        />
       </mesh>
 
       {/* Sun visor */}
@@ -66,23 +75,40 @@ function TruckModel({ engineOn, rainActive, speed }: TataPrimaTruckProps) {
       {/* Windshield */}
       <mesh position={[0, 1.5, 1.48]}>
         <boxGeometry args={[2, 1.2, 0.05]} />
-        <meshStandardMaterial 
-          color="#00BFFF" 
+        <meshPhysicalMaterial 
+          color="#87CEEB" 
           transparent 
-          opacity={0.6}
-          metalness={0.9}
-          roughness={0.1}
+          opacity={0.3}
+          metalness={1}
+          roughness={0}
+          transmission={0.9}
+          thickness={0.5}
+          ior={1.5}
         />
       </mesh>
 
       {/* Side windows */}
       <mesh position={[-1.1, 1.5, 0]} rotation={[0, Math.PI / 2, 0]}>
         <boxGeometry args={[2.5, 1, 0.05]} />
-        <meshStandardMaterial color="#00BFFF" transparent opacity={0.5} />
+        <meshPhysicalMaterial 
+          color="#87CEEB" 
+          transparent 
+          opacity={0.3}
+          metalness={1}
+          roughness={0}
+          transmission={0.85}
+        />
       </mesh>
       <mesh position={[1.1, 1.5, 0]} rotation={[0, Math.PI / 2, 0]}>
         <boxGeometry args={[2.5, 1, 0.05]} />
-        <meshStandardMaterial color="#00BFFF" transparent opacity={0.5} />
+        <meshPhysicalMaterial 
+          color="#87CEEB" 
+          transparent 
+          opacity={0.3}
+          metalness={1}
+          roughness={0}
+          transmission={0.85}
+        />
       </mesh>
     </group>
   );
@@ -98,9 +124,15 @@ function TruckModel({ engineOn, rainActive, speed }: TataPrimaTruckProps) {
       
       {/* Chrome slats */}
       {[...Array(6)].map((_, i) => (
-        <mesh key={i} position={[0, 0.3 - i * 0.12, 0.05]}>
+        <mesh key={i} position={[0, 0.3 - i * 0.12, 0.05]} castShadow>
           <boxGeometry args={[1.6, 0.08, 0.02]} />
-          <meshStandardMaterial color="#C0C0C0" metalness={1} roughness={0.1} />
+          <meshPhysicalMaterial 
+            color="#C0C0C0" 
+            metalness={1} 
+            roughness={0.05}
+            clearcoat={1}
+            clearcoatRoughness={0}
+          />
         </mesh>
       ))}
 
@@ -117,33 +149,47 @@ function TruckModel({ engineOn, rainActive, speed }: TataPrimaTruckProps) {
     <group>
       {/* Left headlight */}
       <group position={[-0.7, 0.9, 1.55]}>
-        <mesh>
+        <mesh castShadow>
           <cylinderGeometry args={[0.15, 0.15, 0.1, 16]} />
-          <meshStandardMaterial 
+          <meshPhysicalMaterial 
             color={engineOn ? "#FFFFCC" : "#CCCCCC"} 
             emissive={engineOn ? "#FFFF00" : "#000000"}
-            emissiveIntensity={engineOn ? 0.8 : 0}
+            emissiveIntensity={engineOn ? 1 : 0}
+            clearcoat={1}
+            clearcoatRoughness={0.1}
           />
         </mesh>
-        <mesh position={[0, 0, 0.05]}>
+        <mesh position={[0, 0, 0.05]} castShadow>
           <cylinderGeometry args={[0.18, 0.18, 0.05, 16]} />
-          <meshStandardMaterial color="#C0C0C0" metalness={1} />
+          <meshPhysicalMaterial 
+            color="#C0C0C0" 
+            metalness={1}
+            roughness={0.05}
+            clearcoat={1}
+          />
         </mesh>
       </group>
 
       {/* Right headlight */}
       <group position={[0.7, 0.9, 1.55]}>
-        <mesh>
+        <mesh castShadow>
           <cylinderGeometry args={[0.15, 0.15, 0.1, 16]} />
-          <meshStandardMaterial 
+          <meshPhysicalMaterial 
             color={engineOn ? "#FFFFCC" : "#CCCCCC"} 
             emissive={engineOn ? "#FFFF00" : "#000000"}
-            emissiveIntensity={engineOn ? 0.8 : 0}
+            emissiveIntensity={engineOn ? 1 : 0}
+            clearcoat={1}
+            clearcoatRoughness={0.1}
           />
         </mesh>
-        <mesh position={[0, 0, 0.05]}>
+        <mesh position={[0, 0, 0.05]} castShadow>
           <cylinderGeometry args={[0.18, 0.18, 0.05, 16]} />
-          <meshStandardMaterial color="#C0C0C0" metalness={1} />
+          <meshPhysicalMaterial 
+            color="#C0C0C0" 
+            metalness={1}
+            roughness={0.05}
+            clearcoat={1}
+          />
         </mesh>
       </group>
 
@@ -261,14 +307,24 @@ function TruckModel({ engineOn, rainActive, speed }: TataPrimaTruckProps) {
           ref={(el) => { if (el) wheelsRef.current[i] = el; }}
         >
           {/* Tire */}
-          <mesh>
+          <mesh castShadow receiveShadow>
             <cylinderGeometry args={[0.4, 0.4, 0.3, 32]} />
-            <meshStandardMaterial color="#1a1a1a" roughness={0.9} />
+            <meshPhysicalMaterial 
+              color="#1a1a1a" 
+              roughness={0.95}
+              clearcoat={0.3}
+              clearcoatRoughness={0.6}
+            />
           </mesh>
           {/* Rim */}
-          <mesh>
+          <mesh castShadow>
             <cylinderGeometry args={[0.25, 0.25, 0.32, 6]} />
-            <meshStandardMaterial color="#C0C0C0" metalness={1} />
+            <meshPhysicalMaterial 
+              color="#C0C0C0" 
+              metalness={1}
+              roughness={0.1}
+              clearcoat={1}
+            />
           </mesh>
         </group>
       );
@@ -450,15 +506,32 @@ export function TataPrimaTruck(props: TataPrimaTruckProps) {
         />
         
         {/* Lighting */}
-        <ambientLight intensity={0.4} />
+        <ambientLight intensity={0.5} />
         <directionalLight 
-          position={[10, 10, 5]} 
-          intensity={1} 
+          position={[10, 15, 10]} 
+          intensity={1.5} 
           castShadow
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
+          shadow-mapSize-width={4096}
+          shadow-mapSize-height={4096}
+          shadow-camera-far={50}
+          shadow-camera-left={-20}
+          shadow-camera-right={20}
+          shadow-camera-top={20}
+          shadow-camera-bottom={-20}
         />
-        <hemisphereLight intensity={0.3} groundColor="#0a0f18" />
+        <directionalLight 
+          position={[-10, 10, -5]} 
+          intensity={0.8} 
+          color="#4a90e2"
+        />
+        <spotLight
+          position={[0, 20, 0]}
+          angle={0.3}
+          penumbra={1}
+          intensity={0.5}
+          castShadow
+        />
+        <hemisphereLight intensity={0.4} groundColor="#0a0f18" color="#ffffff" />
         
         <TruckModel {...props} />
         <RainParticles active={props.rainActive} />
