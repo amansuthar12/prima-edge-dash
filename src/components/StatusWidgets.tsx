@@ -17,7 +17,9 @@ export function StatusWidgets({
   fuelLevel,
   rainActive,
 }: StatusWidgetsProps) {
-  const avgTirePressure = Math.round(tirePressures.reduce((a, b) => a + b, 0) / tirePressures.length);
+  const avgTirePressure = Math.round(
+    tirePressures.reduce((a, b) => a + b, 0) / tirePressures.length
+  );
   const maxLoad = 30;
   const maxTemp = 110;
 
@@ -25,35 +27,50 @@ export function StatusWidgets({
     {
       icon: Wind,
       label: 'Avg Tire Pressure',
-      value: `${avgTirePressure} PSI`,
-      status: avgTirePressure < 30 ? 'critical' : avgTirePressure < 35 ? 'warning' : 'good',
+      value: `${avgTirePressure.toFixed(1)} PSI`,
+      status:
+        avgTirePressure < 30
+          ? 'critical'
+          : avgTirePressure < 35
+            ? 'warning'
+            : 'good',
       progress: (avgTirePressure / 45) * 100,
     },
     {
       icon: Droplet,
       label: 'Fuel Level',
-      value: `${fuelLevel}%`,
-      status: fuelLevel < 20 ? 'critical' : fuelLevel < 40 ? 'warning' : 'good',
-      progress: fuelLevel,
+      value: `${fuelLevel.toFixed(1)} L`,
+      status:
+        fuelLevel < 20
+          ? 'critical'
+          : fuelLevel < 40
+            ? 'warning'
+            : 'good',
+      progress: (fuelLevel / 100) * 100,
     },
     {
       icon: Weight,
       label: 'Load Weight',
-      value: `${load} tons`,
+      value: `${load.toFixed(1)} tons`,
       status: load > 25 ? 'warning' : 'good',
       progress: (load / maxLoad) * 100,
     },
     {
       icon: Thermometer,
       label: 'Temperature',
-      value: `${temperature}°C`,
-      status: temperature > 90 ? 'critical' : temperature > 75 ? 'warning' : 'good',
+      value: `${temperature.toFixed(1)}°C`,
+      status:
+        temperature > 90
+          ? 'critical'
+          : temperature > 75
+            ? 'warning'
+            : 'good',
       progress: (temperature / maxTemp) * 100,
     },
     {
       icon: Gauge,
       label: 'Speed',
-      value: `${speed} km/h`,
+      value: `${speed.toFixed(1)} km/h`,
       status: speed > 100 ? 'warning' : 'good',
       progress: (speed / 120) * 100,
     },
@@ -70,30 +87,39 @@ export function StatusWidgets({
     <div className="grid grid-cols-2 gap-4 animate-slide-up">
       {widgets.map((widget, index) => {
         const Icon = widget.icon;
-        const statusClass = 
-          widget.status === 'critical' ? 'status-critical' :
-          widget.status === 'warning' ? 'status-warning' : 'status-good';
+        const statusClass =
+          widget.status === 'critical'
+            ? 'status-critical'
+            : widget.status === 'warning'
+              ? 'status-warning'
+              : 'status-good';
 
         return (
-          <div 
-            key={widget.label} 
+          <div
+            key={widget.label}
             className="glass-panel p-4 hover:scale-105 transition-transform duration-200"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             <div className="flex items-center justify-between mb-3">
               <Icon className={`h-5 w-5 ${statusClass}`} />
-              <span className={`text-xl font-bold font-mono ${statusClass}`}>
+              <span
+                className={`text-xl font-bold font-mono ${statusClass}`}
+              >
                 {widget.value}
               </span>
             </div>
             <div className="space-y-2">
-              <div className="text-xs text-muted-foreground">{widget.label}</div>
+              <div className="text-xs text-muted-foreground">
+                {widget.label}
+              </div>
               <div className="h-1.5 bg-background rounded-full overflow-hidden">
-                <div 
-                  className={`h-full transition-all duration-500 ${
-                    widget.status === 'critical' ? 'bg-destructive' :
-                    widget.status === 'warning' ? 'bg-secondary' : 'bg-primary'
-                  }`}
+                <div
+                  className={`h-full transition-all duration-500 ${widget.status === 'critical'
+                    ? 'bg-destructive'
+                    : widget.status === 'warning'
+                      ? 'bg-secondary'
+                      : 'bg-primary'
+                    }`}
                   style={{ width: `${widget.progress}%` }}
                 />
               </div>
