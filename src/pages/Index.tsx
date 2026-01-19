@@ -54,7 +54,7 @@ const Index = () => {
               AI-Based Smart Truck Monitoring System
             </h1>
             <p className="text-muted-foreground text-lg">
-              <span className="text-primary font-semibold">TechnoEdge Solutions</span> — Innovate. Implement. Inspire.
+              <span className="text-primary font-semibold">Suthar Dynamics</span> — Innovate. Implement. Inspire.
             </p>
           </div>
         </div>
@@ -91,8 +91,7 @@ const Index = () => {
                 <TataPrimaTruck
                   engineOn={engineOn}
                   rainActive={rainActive}
-                  speed={speed}
-                />
+                  speed={speed} load={0}                />
               </div>
               <div className="mt-4 flex items-center justify-center gap-4 text-xs text-muted-foreground">
                 <span>🖱️ Drag to rotate</span>
@@ -162,7 +161,7 @@ const Index = () => {
       <footer className="border-t border-border/50 backdrop-blur-lg bg-card/30 mt-12">
         <div className="container mx-auto px-6 py-4">
           <div className="text-center text-sm text-muted-foreground">
-            <p>© 2025 TechnoEdge Solutions • Project Expo 2025-26</p>
+            <p>© 2025 Suthar Dynamics </p>
             <p className="text-xs mt-1">Powered by AI & IoT Technologies</p>
           </div>
         </div>

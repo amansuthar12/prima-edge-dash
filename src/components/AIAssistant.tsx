@@ -80,7 +80,7 @@ export function AIAssistant({
         </div>
         <div className="flex-1 space-y-1">
           <div className="flex items-center gap-2">
-            <span className="text-sm font-semibold text-primary">TechnoEdge AI Assistant</span>
+            <span className="text-sm font-semibold text-primary">Suthar AI Fleet Assistant</span>
             <Sparkles className="h-3 w-3 text-secondary" />
           </div>
           <p className="text-sm text-foreground leading-relaxed">

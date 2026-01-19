@@ -214,7 +214,7 @@ export function ControlPanel({
         <div className="flex items-center justify-between">
           <Label className="flex items-center gap-2 text-foreground">
             <Thermometer className="h-4 w-4" />
-            Temperature
+            Tyre Temperature
           </Label>
           <span
             className={`font-mono font-bold ${temperature > 90 ? 'status-critical' :

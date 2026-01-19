@@ -104,7 +104,7 @@ export function TrendsChart({ currentTirePressure, currentFuelLevel }: TrendsCha
               stroke="hsl(var(--secondary))"
               strokeWidth={2}
               dot={false}
-              name="Fuel Level (%)"
+              name="Fuel Level (L)"
               isAnimationActive={false}
             />
           </LineChart>
@@ -121,7 +121,7 @@ export function TrendsChart({ currentTirePressure, currentFuelLevel }: TrendsCha
         <div className="space-y-1">
           <div className="text-xs text-muted-foreground">Current Fuel Level</div>
           <div className="text-2xl font-bold text-secondary">
-            {currentFuelLevel.toFixed(1)}%
+            {currentFuelLevel.toFixed(1)}L
           </div>
         </div>
       </div>
